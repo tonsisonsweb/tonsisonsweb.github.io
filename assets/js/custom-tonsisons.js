@@ -8,7 +8,7 @@ $(document).ready(function(){
 		$.getJSON("https://script.google.com/macros/s/AKfycbzZOx7mACKIaUx0tyWQNMA_g8WiAjmClupRKgR5LnKeampZ2EI/exec?callback=?", function(data){
 			var noms_mesos = ["GEN","FEB","MAR","ABR","MAI","JUN","JUL","AGO", "SEP","OCT","NOV","DES"]
 			if(home>0){
-				var acte = data.filter(function(item){
+				var acte = data.actes.filter(function(item){
 					if(item.home.toLowerCase()==="s"){
 						return true;
 					}
@@ -24,16 +24,26 @@ $(document).ready(function(){
 				var stb_propers = [];
 				var stb_anteriors = [];
 				var _data;
-				for(var i=0,z=data.length;i<z;i++){
-					_data = new Date(data[i].data);
-					if(currentDate<_data){
-						stb_propers.push("<tr><td class='celadata'><span class='celadata'><span class='celadia'>"+('0'+_data.getDate()).slice(-2)+"</span><span class='celames'>"+noms_mesos[_data.getMonth()]+"</span><span class='celaany'>"+_data.getFullYear()+"</span><span class='celahora'>"+data[i].hora+"</span></span></td><td><b>"+data[i].poblacio+"</b></td><td>"+data[i].titol+"</td><td><a href='"+data[i].maps+"' target='_blank'>"+data[i].equipament+"</a></td></tr>");
+				for(var i=0,z=data.actes.length;i<z;i++){
+					_data = new Date(data.actes[i].data);
+					if(data.actes[i].proper){
+						stb_propers.push("<tr><td class='celadata'><span class='celadata'><span class='celadia'>"+('0'+_data.getDate()).slice(-2)+"</span><span class='celames'>"+noms_mesos[_data.getMonth()]+"</span><span class='celaany'>"+_data.getFullYear()+"</span><span class='celahora'>"+data.actes[i].hora+"</span></span></td><td><b>"+data.actes[i].poblacio+"</b></td><td>"+data.actes[i].titol+"</td><td><a href='"+data.actes[i].maps+"' target='_blank'>"+data.actes[i].equipament+"</a></td></tr>");
 					}else{
-						stb_anteriors.push("<tr><td class='celadata'><span class='celadata'><span class='celadia'>"+('0'+_data.getDate()).slice(-2)+"</span><span class='celames'>"+noms_mesos[_data.getMonth()]+"</span><span class='celaany'>"+_data.getFullYear()+"</span><span class='celahora'>"+data[i].hora+"</span></span></td><td><b>"+data[i].poblacio+"</b></td><td>"+data[i].titol+"</td><td><a href='"+data[i].maps+"' target='_blank'>"+data[i].equipament+"</a></td></tr>");
+						stb_anteriors.push("<tr><td class='celadata'><span class='celadata'><span class='celadia'>"+('0'+_data.getDate()).slice(-2)+"</span><span class='celames'>"+noms_mesos[_data.getMonth()]+"</span><span class='celaany'>"+_data.getFullYear()+"</span><span class='celahora'>"+data.actes[i].hora+"</span></span></td><td><b>"+data.actes[i].poblacio+"</b></td><td>"+data.actes[i].titol+"</td><td><a href='"+data.actes[i].maps+"' target='_blank'>"+data.actes[i].equipament+"</a></td></tr>");
 					}
-				}				
-				$("<table><tbody>"+stb_propers.join('')+"</tbody></table>").appendTo($(".propers-concerts"));
-				$("<table><tbody>"+stb_anteriors.join('')+"</tbody></table>").appendTo($(".anteriors-concerts"));
+				}	
+
+				if(stb_propers.length>0){
+					$("<table><tbody>"+stb_propers.join('')+"</tbody></table>").appendTo($(".propers-concerts"));
+				}else{
+					$(".propers-concerts-h").css("display", "none");
+				}
+
+				if(stb_anteriors.length>0){
+					$("<table><tbody>"+stb_anteriors.join('')+"</tbody></table>").appendTo($(".anteriors-concerts"));
+				}else{
+					$(".anteriors-concerts-h").css("display", "none");
+				}
 			}
 		});
 	}
