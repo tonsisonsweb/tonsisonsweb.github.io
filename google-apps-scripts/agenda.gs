@@ -1,8 +1,9 @@
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+
 /*
 * onOpen event
 */
 function onOpen() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
   if(ss){
     var menuEntries = [ 
       {name: "Refresca actes", functionName: "getActes"}
@@ -12,20 +13,34 @@ function onOpen() {
 }
 
 function getActes(){
-  var data = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].getDataRange().getValues();
+  var data = ss.getSheets()[0].getDataRange().getValues();
+  var missatge = ss.getSheets()[1].getDataRange().getValues();
+  
   var i, z, k, l;
   
-  var actes = [],
+  var dadesJSON = {
+        "actes" : [],
+        "missatge" : ""
+      },
       acte = {};
+  
+  if(missatge.length){
+    dadesJSON.missatge = missatge[0][0];
+  }
+  
+  var currentData = new Date();
   
   for(i=1, z=data.length; i<z; i++){
     acte = {};
     for(k=0, l=data[i].length; k<l; k++){
       acte[data[0][k]] = data[i][k];
+      if(data[0][k]==="data"){
+        acte["proper"] = (currentData<data[i][k]?true:false);
+      }
     }
-    actes.push(acte);
+    dadesJSON.actes.push(acte);
   }
-  gscache.put("actes", actes);
+  gscache.put("actes", dadesJSON);
 }
 
 function doGet(e){
@@ -34,6 +49,5 @@ function doGet(e){
   if(e && e.parameters && e.parameters.callback){
     cb = e.parameters.callback + "(";
   }
-  Logger.log(JSON.stringify(c))
   return ContentService.createTextOutput((cb?cb:"")+JSON.stringify(c)+(cb?")":"")).setMimeType(ContentService.MimeType.JAVASCRIPT);
 }

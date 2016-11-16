@@ -20,10 +20,17 @@ $(document).ready(function(){
 					$("<table><tbody><tr><td class='celadata'><span class='celadata'><span class='celadia'>"+('0'+_data.getDate()).slice(-2)+"</span><span class='celames'>"+noms_mesos[_data.getMonth()]+"</span><span class='celaany'>"+_data.getFullYear()+"</span><span class='celahora'>"+acte[0].hora+"</span></span></td><td><b>"+acte[0].poblacio+"</b></td><td>"+acte[0].titol+"</td><td><a href='"+acte[0].maps+"' target='_blank'>"+acte[0].equipament+"</a></td></tr></tbody></table>").appendTo($(".proper-concert"));
 				}
 			}else{
+				//MISSATGE
+				if(data.missatge && data.missatge!==""){
+					$("<h3 class='major'>"+data.missatge+"</h3>").prependTo($(".contingut-servidor"));
+				}
+
+				//CONCERTS
 				var currentDate = new Date();
 				var stb_propers = [];
 				var stb_anteriors = [];
 				var _data;
+
 				for(var i=0,z=data.actes.length;i<z;i++){
 					_data = new Date(data.actes[i].data);
 					if(data.actes[i].proper){
