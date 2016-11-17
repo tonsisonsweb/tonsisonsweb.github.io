@@ -3127,6 +3127,10 @@
 				margin-bottom: -6.5em;
 			}
 
+			body#juniors #banner{
+				background-image: linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)),url("../../images/bg_juniors.jpg");
+			}
+
 		}
 
 		@media screen and (max-width: 980px) {
@@ -3235,6 +3239,10 @@
 			background-size: auto, cover;
 			background-position: center, 0% 30%;
 			margin-bottom: -6.5em;
+		}
+
+		body#juniors #wrapper > header{
+			background-image: linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)),url("../../images/bg_juniors.jpg");
 		}
 
 	}
@@ -3628,6 +3636,10 @@
 			background-position: center, center;
 			margin-top: -6.5em;
 			padding-top: 6.5em;
+		}
+
+		body#juniors #footer{
+			background-image: linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)),url("../../images/bg_juniors.jpg");
 		}
 
 	}

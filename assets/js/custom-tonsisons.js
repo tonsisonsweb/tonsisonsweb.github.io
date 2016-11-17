@@ -8,6 +8,11 @@ $(document).ready(function(){
 		$.getJSON("https://script.google.com/macros/s/AKfycbzZOx7mACKIaUx0tyWQNMA_g8WiAjmClupRKgR5LnKeampZ2EI/exec?callback=?", function(data){
 			var noms_mesos = ["GEN","FEB","MAR","ABR","MAI","JUN","JUL","AGO", "SEP","OCT","NOV","DES"]
 			if(home>0){
+				//MISSATGE
+				if(data.missatge && data.missatge!==""){
+					$(".missatge-servidor").html(data.missatge);
+				}
+				//ACTE HOME
 				var acte = data.actes.filter(function(item){
 					if(item.home.toLowerCase()==="s"){
 						return true;
@@ -20,10 +25,6 @@ $(document).ready(function(){
 					$("<table><tbody><tr><td class='celadata'><span class='celadata'><span class='celadia'>"+('0'+_data.getDate()).slice(-2)+"</span><span class='celames'>"+noms_mesos[_data.getMonth()]+"</span><span class='celaany'>"+_data.getFullYear()+"</span><span class='celahora'>"+acte[0].hora+"</span></span></td><td><b>"+acte[0].poblacio+"</b></td><td>"+acte[0].titol+"</td><td><a href='"+acte[0].maps+"' target='_blank'>"+acte[0].equipament+"</a></td></tr></tbody></table>").appendTo($(".proper-concert"));
 				}
 			}else{
-				//MISSATGE
-				if(data.missatge && data.missatge!==""){
-					$("<h3 class='major'>"+data.missatge+"</h3>").prependTo($(".contingut-servidor"));
-				}
 
 				//CONCERTS
 				var currentDate = new Date();
