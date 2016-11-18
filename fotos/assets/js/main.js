@@ -4,6 +4,24 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+function getFlickr(callback){
+	$.getJSON("https://script.google.com/macros/s/AKfycbzZkGzndAhIirWa9GcfZs2chkXkWm4m3a7Ro7SLVzBgSmp9aWA/exec?callback=?", function(data){
+		var stb = [];
+		var it;
+		var src;
+		console.log(data)
+		for(var i=0;i<data.photoset.photo.length;i++){
+			it = data.photoset.photo[i];
+			src = "http://farm"+it.farm+".static.flickr.com/"+it.server+"/"+it.id+"_"+it.secret;
+			stb.push('<article><a href="',src,'_b.jpg" class="thumbnail"><img src="',src,'_n.jpg" alt="" /></a><h2>',it.title,'</h2><p></p></article>');
+		}
+		if(stb.length>0){
+			$(stb.join("")).appendTo($("#thumbnails"));
+		}
+		callback();
+	});	
+}
+
 var main = (function($) { var _ = {
 
 	/**
@@ -767,4 +785,8 @@ var main = (function($) { var _ = {
 
 	},
 
-}; return _; })(jQuery); main.init();
+}; return _; })(jQuery); 
+
+getFlickr(function(){
+	main.init();
+})

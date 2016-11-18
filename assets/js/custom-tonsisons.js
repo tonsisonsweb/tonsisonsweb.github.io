@@ -2,7 +2,6 @@ $(document).ready(function(){
 
 	var home = $("body.home").size();
 	var concerts = $("body.concerts").size();
-	var multimedia = $("body.multimedia").size();
 
 	//AGENDA
 	if(home>0 || concerts>0){
@@ -55,24 +54,6 @@ $(document).ready(function(){
 				}
 			}
 		});
-	}else if(multimedia>0){
-		console.log(multimedia)
-		//FLICKR
-		$.getJSON("https://script.google.com/macros/s/AKfycbzZkGzndAhIirWa9GcfZs2chkXkWm4m3a7Ro7SLVzBgSmp9aWA/exec?callback=?", function(data){
-			var stb = [];
-			var it;
-			var src;
-			console.log(data)
-			for(var i=0;i<data.photoset.photo.length;i++){
-				it = data.photoset.photo[i];
-				src = "http://farm"+it.farm+".static.flickr.com/"+it.server+"/"+it.id+"_"+it.secret;
-				stb.push('<article><a href="',src,'_b.jpg" class="thumbnail"><img src="',src,'_n.jpg" alt="" /></a><h2>',it.title,'</h2><p></p></article>');
-			}
-			if(stb.length>0){
-				$(stb.join("")).appendTo($("#thumbnails"));
-			}
-		});
-
 	}
 
 });
