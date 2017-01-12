@@ -3,7 +3,9 @@ $(document).ready(function(){
 	var home = $("body.home").size();
 	var concerts = $("body.concerts").size();
 	
-	$("form")[0].reset()
+	if($("form").size()>0){
+		$("form")[0].reset();
+	}
 
 	//AGENDA
 	if(home>0 || concerts>0){
