@@ -70,13 +70,27 @@
 						<div class="inner">
 							<h2 class="major">Contacta amb Tons i Sons</h2>
 							<p>Si vols deixar-nos un missatge, necessites més informació, o vols formar part de la coral, no dubtis en fer-nos arribar la teva consulta.</p>
-												
-							<form method="post" action="#">
-								<ul class="actions vertical">
-									<li><a href="missatge.html" target="_blank" class="button fit">Envia Missatge</a></li>
-
+							<form method="post" action="https://formspree.io/tonsisons@gmail.com">
+								<div class="field">
+									<label for="name">Nom</label>
+									<input type="text" name="name" id="name" />
+								</div>
+								<div class="field">
+									<label for="email">Adreça correu</label>
+									<input type="email" name="email" id="email" />
+								</div>
+								<div class="field">
+									<label for="message">Missatge</label>
+									<textarea name="message" id="message" rows="4"></textarea>
+								</div>
+								<div class="field">
+									<input type="text" name="_gotcha" style="display:none">
+									<input type="hidden" name="_next" value="http://tonsisons.cat/notifica-coral.html" />
+									<input type="hidden" name="_subject" value="Contacte web (Coral)" />
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Envia Missatge" /></li>
 								</ul>
-								Al moment de donar-nos les teves dades, acceptes la nostra Política de Privacitat
 							</form>
 							<ul class="contact">
 								<li class="fa-home">
@@ -90,6 +104,7 @@
 								<li class="fa-facebook"><a href="https://www.facebook.com/tonsisons" target="_blank" >facebook.com/tonsisons</a></li>
 								<!-- <li class="fa-instagram"><a href="#">instagram.com/untitled-tld</a></li> -->
 							</ul>
+							<p><br>Al moment de donar-nos les teves dades, acceptes la nostra Política de Privacitat</p>
 							<ul class="copyright">
 								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
