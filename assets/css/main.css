@@ -2439,6 +2439,37 @@
 		overflow-x: auto;
 	}
 
+	table.tableSons tbody tr {
+			border: solid 0px rgba(255, 255, 255, 0.125);
+			border-left: 0;
+			border-right: 0;
+	}
+
+
+
+
+	table.tableSons tbody tr:nth-child(2n + 1) {
+			background-color: rgba(255, 255, 255)
+	}
+
+	table.tableSons thead {
+			border-bottom: solid 0px rgba(255, 255, 255, 0.125);
+	}
+
+
+	table.tableSons p {
+			margin: 0 0 0 0
+	}
+
+	table.tableSons th {
+			color: #ffffff;
+			font-size: 0.9em;
+			font-weight: normal;
+			padding: 0 0.75em 0.75em 0.75em;
+	
+			text-align: left;
+	}
+
 	table {
 		margin: 0 0 2em 0;
 		width: 100%;
@@ -2499,6 +2530,9 @@
 			table.alt tfoot {
 				border-top: 0;
 			}
+
+
+	
 
 /* Button */
 
